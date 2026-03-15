@@ -19,13 +19,20 @@ export default function TodoList() {
     setTasks((prev) => [...prev, newTask]);
   };
 
-  console.log(tasks.filter((task) => task.id === 1));
-
   const toggleTaskCompetion = (id: number) => {
     setTasks((prev) =>
       prev.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task,
       ),
+    );
+  };
+
+  const deleteTask = (id: number) => {
+    setTasks((prev) => prev.filter((task) => task.id !== id));
+  };
+  const editTask = (id: number, newName: string) => {
+    setTasks((prev) =>
+      prev.map((task) => (task.id === id ? { ...task, name: newName } : task)),
     );
   };
 
@@ -46,6 +53,8 @@ export default function TodoList() {
                 key={task.id}
                 task={task}
                 toggleTaskCompetion={toggleTaskCompetion}
+                deleteTask={deleteTask}
+                editTask={editTask}
               />
             ))}
           </div>
