@@ -26,7 +26,7 @@ export default function TaskItem({
     setIsEditing(false);
   };
   return (
-    <div className="flex items-center justify-between border rounded-md p-2 space-x-4 ">
+    <div className="flex items-center justify-between border-b p-2 space-x-4 ">
       <div className="flex flex-col gap-2">
         <div className="flex  items-center gap-2">
           <input
@@ -34,7 +34,13 @@ export default function TaskItem({
             checked={task.completed}
             onChange={() => toggleTaskCompetion(task.id)}
           />
-          <Link href={`/${task.id}`} className="font-medium">
+          <Link
+            href={`/${task.id}`}
+            className={
+              `font-medium` +
+              (task.completed ? "line-through text-gray-500" : "")
+            }
+          >
             {task.name}
           </Link>
         </div>
@@ -53,9 +59,9 @@ export default function TaskItem({
       </div>
       <div className="flex gap-2">
         <button onClick={() => (isEditing ? handleSave() : handleEdit())}>
-          {isEditing ? "save" : "edit"}
+          {isEditing ? "Save" : "Edit"}
         </button>
-        <button onClick={() => deleteTask(task.id)}>delete</button>
+        <button onClick={() => deleteTask(task.id)}>Delete</button>
       </div>
     </div>
   );

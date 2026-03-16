@@ -24,7 +24,7 @@ export default function NewTask({ addNewTask }: NewTaskProps) {
           value={taskName}
           onChange={(e) => setTaskName(e.target.value)}
         />
-        <input type="submit" value="add new" />
+        <input type="submit" value="Add" />
       </form>
     </div>
   );
